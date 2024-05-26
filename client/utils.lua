@@ -5,10 +5,6 @@ CreateThread(function()
         for item, data in pairs(exports.ox_inventory:Items()) do
             oxItems[item] = deepCopy(data)
         end
-    elseif Config.Inventory == 'qs-inventory' then
-        for item, data in pairs(exports.ox_inventory:Items()) do
-            oxItems[item] = deepCopy(data)
-        end
     end
 end)
 
@@ -63,7 +59,7 @@ function getItemInfo(item)
     elseif Config.Inventory == 'ox_inventory' then
         return oxItems[item]
     elseif Config.Inventory == 'qs-inventory' then
-        return oxItems[item]
+        return ItemList[item]
     end
 end
 
