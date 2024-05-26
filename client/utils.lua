@@ -5,6 +5,10 @@ CreateThread(function()
         for item, data in pairs(exports.ox_inventory:Items()) do
             oxItems[item] = deepCopy(data)
         end
+    elseif Config.Inventory == 'qs-inventory' then
+        for item, data in pairs(exports.ox_inventory:Items()) do
+            oxItems[item] = deepCopy(data)
+        end
     end
 end)
 
@@ -15,6 +19,12 @@ function notify(text, type, timer)
     elseif Config.Notify == 'esx' then
         TriggerEvent('esx:showNotification', text, type, timer or 3500)
     elseif Config.Notify == 'lib' then
+        if type == 'info' then type = 'inform' end
+        lib.notify({title = type:upper(), description = text, type = type, duration = timer or 3500})
+    elseif Config.Notify == 'qs' then
+        if type == 'info' then type = 'inform' end
+        lib.notify({title = type:upper(), description = text, type = type, duration = timer or 3500})
+    elseif Config.Notify == 'okok' then
         if type == 'info' then type = 'inform' end
         lib.notify({title = type:upper(), description = text, type = type, duration = timer or 3500})
     else
@@ -36,6 +46,11 @@ function progressBar(text, timer)
         Core.Progressbar(text, timer,{
             FreezePlayer = false, animation = {}, onFinish = function() end
         })
+    elseif Config.ProgressBar == '17mov' then
+        -- Make sure your framework ESX
+        Core.Progressbar(text, timer,{
+            FreezePlayer = false, animation = {}, onFinish = function() end
+        })
     else
         -- add a custom progressbar
 
@@ -46,6 +61,8 @@ function getItemInfo(item)
     if Config.Inventory == 'qb-inventory' then
         return Core.Shared.Items[item]
     elseif Config.Inventory == 'ox_inventory' then
+        return oxItems[item]
+    elseif Config.Inventory == 'qs-inventory' then
         return oxItems[item]
     end
 end
