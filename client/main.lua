@@ -913,12 +913,12 @@ function StartLineCreate(thetype)
         DistanceCamCreate = Config.DistanceCreateCam.SignalCam
     end
     local KeysTable = {
-        {Text = 'Set Camera', Key = 38},
-        {Text = 'Cancel', Key = 194},
-        {Text = 'Right Camera', Key = 175},
-        {Text = 'Left Camera', Key = 174},
-        {Text = 'UP Camera', Key = 172},
-        {Text = 'Down Camera', Key = 173},
+        {Text = 'Kamera setzen', Key = 38},
+        {Text = 'Abbrechen', Key = 194},
+        {Text = 'Rechte Kamera', Key = 175},
+        {Text = 'Linke Kamera', Key = 174},
+        {Text = 'Hoch Kamera', Key = 172},
+        {Text = 'Runter Kamera', Key = 173},
     }
     if thetype == 'Job' then
         KeysTable[#KeysTable +1] = {Text = 'Next Cam Prop', Key = 311}
@@ -1074,25 +1074,25 @@ function PlaceCam(Data)
             
             if Data then        
                 if CurrentType == 'Job' then
-                    Table[#Table +1] = {type = 'input', label = 'Camera Name', required = true, min = 4, max = 30, default = Data[1]}
+                    Table[#Table +1] = {type = 'input', label = 'Name der Kamera', required = true, min = 4, max = 30, default = Data[1]}
                     Table[#Table +1] = {type = 'input', label = 'Icon', min = 4, max = 20, default = Data[2]}
-                    Table[#Table +1] = {type = 'checkbox', label = 'Can Remove', checked = Data[3]}
-                    Table[#Table +1] = {type = 'checkbox', label = 'Show Camera Prop', checked = Data[4]}
-                    Table[#Table +1] = {type = 'checkbox', label = 'Enable Movement', checked = Data[5]}
+                    Table[#Table +1] = {type = 'checkbox', label = 'Kann entfernt werden', checked = Data[3]}
+                    Table[#Table +1] = {type = 'checkbox', label = 'Kamera Prop ansehen', checked = Data[4]}
+                    Table[#Table +1] = {type = 'checkbox', label = 'Bewegungen aktivieren', checked = Data[5]}
                 elseif CurrentType == 'Signal' then
-                    Table[#Table +1] = {type = 'input', label = 'Camera Name', required = true, min = 4, max = 20, default = Data[1]}
-                    Table[#Table +1] = {type = 'checkbox', label = 'Enable Movement', checked = Data[5]}
+                    Table[#Table +1] = {type = 'input', label = 'Name der Kamera', required = true, min = 4, max = 20, default = Data[1]}
+                    Table[#Table +1] = {type = 'checkbox', label = 'Kamerabewegungen aktivieren', checked = Data[5]}
                 end
             else
                 if CurrentType == 'Job' then
-                    Table[#Table +1] = {type = 'input', label = 'Camera Name', required = true, min = 4, max = 30}
+                    Table[#Table +1] = {type = 'input', label = 'Name der Kamera', required = true, min = 4, max = 30}
                     Table[#Table +1] = {type = 'input', label = 'Icon', min = 4, max = 20}
-                    Table[#Table +1] = {type = 'checkbox', label = 'Can Remove'}
-                    Table[#Table +1] = {type = 'checkbox', label = 'Show Camera Prop'}
-                    Table[#Table +1] = {type = 'checkbox', label = 'Enable Movement'}
+                    Table[#Table +1] = {type = 'checkbox', label = 'Kann entfernt werden'}
+                    Table[#Table +1] = {type = 'checkbox', label = 'Kamera Prop ansehen'}
+                    Table[#Table +1] = {type = 'checkbox', label = 'Bewegen aktivieren'}
                 elseif CurrentType == 'Signal' then
-                    Table[#Table +1] = {type = 'input', label = 'Camera Name', required = true, min = 4, max = 30}
-                    Table[#Table +1] = {type = 'checkbox', label = 'Enable Movement'}
+                    Table[#Table +1] = {type = 'input', label = 'Name der Kamera', required = true, min = 4, max = 30}
+                    Table[#Table +1] = {type = 'checkbox', label = 'Bewegungen aktivieren'}
                 end      
             end
     
@@ -1142,7 +1142,7 @@ function PlaceCam(Data)
                         if RecheckItem then
                             TriggerServerEvent('sf_camerasecurity:Server:SaveNewCam', Input[1], json.encode(Setting), json.encode(coords), json.encode(cameraRotation), CurrentItem, Setting.Signal)
                         else
-                            notify('Need item to add camera', 'error', 5000)
+                            notify('Dafür benötigst du eine Kamera', 'error', 5000)
                         end        
                         CurrentType = nil
                         CurrentJob = nil
