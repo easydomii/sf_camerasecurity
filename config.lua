@@ -1,11 +1,11 @@
 Config = Config or {}
 
-Config.Framework = 'QBCore'     -- ESX / QBCore
+Config.Framework = 'ESX'     -- ESX / QBCore
 
-Config.Inventory = 'qb-inventory'       -- ox_inventory / qb-inventory   (Note: dont use qb-inventory if your framework esx please)
+Config.Inventory = 'qs-inventory'       -- ox_inventory / qb-inventory   (Note: dont use qb-inventory if your framework esx please)
 Config.SignalLength = 12   -- how much characters and numbers in signal 
 Config.MoveCamForwardDistance = 0.2     -- this only move camera coords to forward because some times big cam props hide the vision
-Config.ImageLinkInventory = "nui://qb-inventory/html/images/"  -- location images inventory ("nui://qb-inventory/html/images/") / ("nui://ox_inventory/web/images/")
+Config.ImageLinkInventory = "nui://qs-inventory/html/images/"  -- location images inventory ("nui://qb-inventory/html/images/") / ("nui://ox_inventory/web/images/")
 Config.RemoteTablet = 'camera_viewer'       -- for Citizens
 Config.TabletCamViewJobs = 'camera_tablet'  -- for Jobs
 Config.NeedItemFixCam = 'screwdriverset'    -- for job to fix cam
@@ -13,14 +13,14 @@ Config.CameraSignalPaper = 'camera_paper'   -- for citizens to receive signal wh
 Config.VpnItem = 'vpn'                      -- require this item in location wifi to watch camera
 Config.DisableWifiSystem = false            -- if you want disable wifi system 
 Config.TimerFixCamera = 10      -- sec (this only for jobs, no fix cam for normal camera)
-Config.Target = 'qb-target'     -- ox_target / qb-target
+Config.Target = 'ox_target'     -- ox_target / qb-target
 Config.Notify = 'lib'           -- qb / esx / lib / custom (require to add your custom notify in [sf_camerasecurity/client/utils.lua])
 Config.ProgressBar = 'lib'      -- qb / esx / lib / custom (require to add your custom progressbar in [sf_camerasecurity/client/utils.lua])
 
 -- shop information
 Config.Shop = {   
     Enable = true,                                        -- to active shop
-    Label = 'Camera Shop',                                -- name shop
+    Label = 'Kamera-Laden',                                -- name shop
     Icon = 'fa-solid fa-camera',                          -- icon target eye
     Ped = 's_m_y_grip_01',                                -- ped shop
     Scenario = 'WORLD_HUMAN_CLIPBOARD',                   -- scenario ped
@@ -97,6 +97,10 @@ Config.JobItems = {
 -- this for jobs if he not have tablet like (cctv) to open camera
 Config.JobConnectLocations = {
     ['police'] = {
+        Coords = vector3(440.71, -978.79, 29.69),
+        Distance = 1
+    },
+     ['ambulance'] = {
         Coords = vector3(440.71, -978.79, 29.69),
         Distance = 1
     }
