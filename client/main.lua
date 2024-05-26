@@ -67,7 +67,7 @@ AddEventHandler('CEventGunShot', function(witnesses, ped, coords)
             if NearDist <= 0.3 then
                 local BrokeCamera = BrokeCamera(v.Id)
                 if BrokeCamera == 'true' then
-                    notify('You broke a camera', 'error', 5000)
+                    notify('Du hast die Kamera zerstörrt!', 'error', 5000)
                 end
             end    
         end                                                                     
@@ -118,7 +118,7 @@ RegisterNetEvent('sf_camerasecurity:Client:RemovePropCamera', function(TheId, Re
 end)
 
 RegisterNetEvent('sf_camerasecurity:Client:CreateNewCamera',function(Type, Job, Item)
-    if Active then notify('You are active install camera', 'error', 3500) return end
+    if Active then notify('Du hast eine aktive Kamera installiert', 'error', 3500) return end
     if Type == 'Job' then
         CurrentJob = Job
         CurrentType = Type
@@ -169,7 +169,7 @@ RegisterNetEvent('sf_camerasecurity:Client:ConnectCamBySignal',function()
                     return WatchCam(DataConnect.Name, DataConnect.Coords, DataConnect.Rot, DataConnect.Settings, false, false, DataConnect.ID)                 
                 else
                     InAnim = false
-                    notify('No Camera With This Signal Or Broken', 'error', 5000)
+                    notify('Keine Kamera mit diesem Signal oder sie ist deffekt!', 'error', 5000)
                 end
             end
         end)
@@ -180,7 +180,7 @@ end)
 
 RegisterNetEvent('sf_camerasecurity:Client:GetSignalPaper',function(signalcode)
     local alert = lib.alertDialog({
-        header = 'Camera Signal: '..signalcode,
+        header = 'Kamera Signal: '..signalcode,
         centered = true,
         cancel = false,
         labels = {confirm = 'copy'}
@@ -197,14 +197,14 @@ RegisterNetEvent('sf_camerasecurity:Client:CrashCamera',function(id)
         if CurrentCamID ~= nil and CurrentCam ~= nil then
             if CurrentCamID == id then
                 ExitCamera() 
-                notify('Camera Crashed', 'error', 7000)
+                notify('Kamera erfolgreich gecrasht!', 'error', 7000)
             end
         end
     end
 end)
 
 RegisterNetEvent('sf_camerasecurity:Client:OpenStaticCams',function()
-    if InAnim then notify('Already Open', 'error') return end
+    if InAnim then notify('Bereits geöffnet', 'error') return end
     lib.callback('sf_camerasecurity:Server:GetStaticCams', false, function(Result)
         if Result then
             local MenuCam = {}  
