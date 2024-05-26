@@ -135,7 +135,7 @@ end)
 
 RegisterNetEvent('sf_camerasecurity:Client:ConnectCamBySignal',function()
     TabletAnimation()
-    local Input = lib.inputDialog('Camera Connect',{
+    local Input = lib.inputDialog('Kamera verbinden',{
         {type = 'input', label = '', icon = 'wifi', required = true},
     })       
     if Input then
@@ -245,7 +245,7 @@ RegisterNetEvent('sf_camerasecurity:Client:OpenStaticCams',function()
                             local SecendMenu = {}
                             
                             SecendMenu[#SecendMenu +1] = {
-                                title = 'Watch',
+                                title = 'Ansehen',
                                 icon = 'camera',
                                 onSelect = function()
                                     WatchCam(v.name, v.coords, v.rot, Settings, Cam_ID, DataCams, v.id)
@@ -253,7 +253,7 @@ RegisterNetEvent('sf_camerasecurity:Client:OpenStaticCams',function()
                             }
                             if tonumber(Settings.CanRemove) == 1 then
                                 SecendMenu[#SecendMenu +1] = {
-                                    title = 'Remove Camera',
+                                    title = 'Kamera entfernen',
                                     icon = 'trash',
                                     onSelect = function()
                                         local pCoords = GetEntityCoords(PlayerPedId())
@@ -330,7 +330,7 @@ RegisterNetEvent('sf_camerasecurity:Client:OpenStaticCams',function()
             end
             if NumberTables > 0 then
                 TabletAnimation()
-                lib.registerContext({id = 'Main_Camera_Menu', title = 'Cameras', onExit = function() InAnim = false end, options = MenuCam})
+                lib.registerContext({id = 'Main_Camera_Menu', title = 'Kameras', onExit = function() InAnim = false end, options = MenuCam})
                 lib.showContext('Main_Camera_Menu')
             else
                 InAnim = false
@@ -523,6 +523,8 @@ function WatchCam(Name, Coords, Rotation, Action, Cam_ID, DataCams, ID)
         if Config.Inventory == 'qb-inventory' then
             LocalPlayer.state:set('inv_busy', true, false)
         elseif Config.Inventory == 'ox_inventory' then
+            LocalPlayer.state:set('invBusy', true, false)
+        elseif Config.Inventory == 'qs-inventory' then
             LocalPlayer.state:set('invBusy', true, false)
         end
         CurrentCamID = ID
@@ -1272,7 +1274,7 @@ CreateThread(function() -- Loop Zones
 
         if InRange and not Shown and not InCam then
             Shown = true
-            lib.showTextUI('[E] To Show Camera List', {position = "left-center"})
+            lib.showTextUI('[E] - Alle Kameras ansehen', {position = "left-center"})
         elseif (not InRange and Shown) or InCam then
             Shown = false
             lib.hideTextUI()
@@ -1348,5 +1350,5 @@ CreateThread(function()
 end)
 
 -- KEY BINDS
-RegisterKeyMapping("exitcamera", "Exit Camera", "keyboard", "BACK") 
+RegisterKeyMapping("exitcamera", "Kamera verlassen", "keyboard", "BACK") 
 RegisterCommand('exitcamera', ExitCamera, false)   
