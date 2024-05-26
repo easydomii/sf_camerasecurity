@@ -63,6 +63,8 @@ RegisterNetEvent('sf_camerasecurity:Server:SaveNewCam',function(name, setting, c
             end       
         elseif Config.Inventory == 'ox_inventory' then
             exports.ox_inventory:RemoveItem(src, item, 1)
+        elseif Config.Inventory == 'qs-inventory' then
+            exports.ox_inventory:RemoveItem(src, item, 1)
         end
         local UncodedSetting = json.decode(setting)
         if tonumber(UncodedSetting.ShowProp) == 1 then
@@ -80,7 +82,9 @@ RegisterNetEvent('sf_camerasecurity:Server:SaveNewCam',function(name, setting, c
                     end               
                 elseif Config.Inventory == 'ox_inventory' then
                     exports.ox_inventory:AddItem(src, Config.CameraSignalPaper, 1, info)
-                end                        
+                elseif Config.Inventory == 'qs-inventory' then
+                    exports.ox_inventory:AddItem(src, Config.CameraSignalPaper, 1, info)
+                end                            
             end)   
         end     
         TriggerClientEvent('sf_camerasecurity:client:notify', src, 'Camera Added Successfully', 'success', 5000)
@@ -130,7 +134,9 @@ RegisterNetEvent('sf_camerasecurity:Server:RemoveStaticCam',function(id)
                                         end                                      
                                     elseif Config.Inventory == 'ox_inventory' then
                                         exports.ox_inventory:AddItem(src, s.ItemName, 1)
-                                    end               
+                                    elseif Config.Inventory == 'qs-inventory' then
+                                        exports.ox_inventory:AddItem(src, s.ItemName, 1)
+                                    end                  
                                 end)    
                             end
                         end            
@@ -145,7 +151,9 @@ RegisterNetEvent('sf_camerasecurity:Server:RemoveStaticCam',function(id)
                         end                      
                     elseif Config.Inventory == 'ox_inventory' then
                         exports.ox_inventory:AddItem(src, Config.SignalItem.ItemName, 1)
-                    end                
+                    elseif Config.Inventory == 'qs-inventory' then
+                        exports.ox_inventory:AddItem(src, Config.SignalItem.ItemName, 1)
+                    end                   
                 end)        
             end
             StoredCams[k] = nil 
@@ -200,7 +208,10 @@ lib.callback.register('sf_camerasecurity:Server:HasItem', function(source, item)
         end       
     elseif Config.Inventory == 'ox_inventory' then        
         return exports.ox_inventory:GetSlotWithItem(source, item)
+    elseif Config.Inventory == 'qs-inventory' then        
+        return exports.ox_inventory:GetSlotWithItem(source, item)
     end
+
 end)
 
 lib.callback.register('sf_camerasecurity:Server:BrokeCamera', function(source, id)
@@ -333,6 +344,7 @@ CreateThread(function()
                 end)
             end
         end  
+    
     end
 end)
 
